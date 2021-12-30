@@ -24,7 +24,21 @@
 // 모르는 부분은 기능 구현을 하면서 학습하면서 해결할 수 있다.
 // 필요한 지식을 빠르게 파악하고 얻을 수 있다.
 
+// const $ = (selector) => document.querySelector(selector);
+const $ = function (selector){
+    return document.querySelector(selector);
+}
 
 function App(){
-    // 메뉴의 이름을 입력받는건
+    // form태그가 자동으로 전송되는걸 막아준다.
+    $('#espresso-menu-form').addEventListener("submit",(event) => {
+        event.preventDefault();
+    })
+    // 메뉴의 이름을 입력받는 건
+    $('#espresso-menu-form').addEventListener('keypress',(event) =>{
+        if(event.key === "Enter"){
+            console.log($("#espresso-menu-name").value)
+        }
+    })
 }
+App();
