@@ -30,7 +30,7 @@
 //     return document.querySelector(selector);
 // }
 const $ = selector => document.querySelector(selector);
-
+let count = 0;
 function App(){
     // form태그가 자동으로 전송되는걸 막아준다.
     $('#espresso-menu-form').addEventListener("submit",(event) => {
@@ -59,6 +59,13 @@ function App(){
                     </li>`;
             };
             console.log(menuItemTemplate(espressoMenuName));
+            // html을 넣을 때는 innerHTML활용(enter를 누를때마다 새롭게 덮어씌움)
+            // insertAdjacentHTML(원하는 위치 속성에 맞게 추가 가능)
+            $('#espresso-menu-list').insertAdjacentHTML('beforeend',menuItemTemplate(espressoMenuName));
+            count += 1;
+            $('.menu-count').innerHTML = `총 ${count}개`;
+            // input 입력 후 빈 문자열로 초기화
+            $('#espresso-menu-name').value = "";
         }
     })
 }
