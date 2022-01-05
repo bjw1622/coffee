@@ -43,3 +43,15 @@ function App(){
     })
 }
 App();
+
+function test(){
+    const $button = document.querySelector('#espresso-menu-submit-button');
+    $button.addEventListener('click',()=>{
+        console.log("check 확인");
+    })
+}
+test();
+
+function (selector) {
+    document.querySelector(selector);
+}
