@@ -26,8 +26,11 @@
 // 필요한 지식을 빠르게 파악하고 얻을 수 있다.
 
 // const $ = (selector) => document.querySelector(selector);
+// const $ = function (selector){
+//     return document.querySelector(selector);
+// }
 const $ = function (selector){
-    return document.querySelector(selector);
+    return document.querySelector(selector)
 }
 
 function App(){
@@ -51,7 +54,3 @@ function test(){
     })
 }
 test();
-
-function (selector) {
-    document.querySelector(selector);
-}
