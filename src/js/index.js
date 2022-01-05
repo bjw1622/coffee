@@ -25,13 +25,7 @@
 // 모르는 부분은 기능 구현을 하면서 학습하면서 해결할 수 있다.
 // 필요한 지식을 빠르게 파악하고 얻을 수 있다.
 
-// const $ = (selector) => document.querySelector(selector);
-// const $ = function (selector){
-//     return document.querySelector(selector);
-// }
-const $ = function (selector){
-    return document.querySelector(selector)
-}
+const $ = (selector) => document.querySelector(selector);
 
 function App(){
     // form태그가 자동으로 전송되는걸 막아준다.
@@ -47,10 +41,9 @@ function App(){
 }
 App();
 
-function test(){
-    const $button = document.querySelector('#espresso-menu-submit-button');
-    $button.addEventListener('click',()=>{
-        console.log("check 확인");
-    })
-}
-test();
+// function test(){
+//     $("#espresso-menu-submit-button").addEventListener('click',()=>{
+//         console.log("check 확인");
+//     })
+// }
+// test();
