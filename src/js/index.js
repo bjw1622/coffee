@@ -2,7 +2,7 @@
 
 // TODO 메뉴 추가
 // - [] 메뉴의 이름을 입력 받고 엔터키 입력으로 추가한다.
-// - [] 추가되는 메뉴의 마크업은 `<ul id="espresso-menu-list">`
+// - [] 추가되는 메뉴의 마크업은 `<ul id="espresso-menu-list" class="mt-3 pl-0"></ul>`안에 삽입
 // - [] 총 메뉴 갯수를 count하여 상단에 보여준다.
 // - [] 메뉴가 추가되고 나면, input 값은 빈 값으로 초기화한다.
 // - [] 사용자 입력값이 빈 값이라면 추가되지 않는다.
@@ -25,7 +25,11 @@
 // 모르는 부분은 기능 구현을 하면서 학습하면서 해결할 수 있다.
 // 필요한 지식을 빠르게 파악하고 얻을 수 있다.
 
-const $ = (selector) => document.querySelector(selector);
+// const $ = (selector) => document.querySelector(selector);
+// const $ = function(selector){
+//     return document.querySelector(selector);
+// }
+const $ = selector => document.querySelector(selector);
 
 function App(){
     // form태그가 자동으로 전송되는걸 막아준다.
@@ -35,15 +39,27 @@ function App(){
     // 메뉴의 이름을 입력받는 건
     $('#espresso-menu-form').addEventListener('keypress',(event) =>{
         if(event.key === "Enter"){
-            console.log($("#espresso-menu-name").value)
+            const espressoMenuName = $("#espresso-menu-name").value;
+            const menuItemTemplate = (espressoMenuName) => {
+                return `
+                    <li class="menu-list-item d-flex items-center py-2">
+                        <span class="w-100 pl-2 menu-name">${espressoMenuName}</span>
+                        <button
+                            type="button"
+                            class="bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button"
+                        >
+                        수정
+                        </button>
+                        <button
+                        type="button"
+                        class="bg-gray-50 text-gray-500 text-sm menu-remove-button"
+                    >
+                        삭제
+                        </button>
+                    </li>`;
+            };
+            console.log(menuItemTemplate(espressoMenuName));
         }
     })
 }
 App();
-
-// function test(){
-//     $("#espresso-menu-submit-button").addEventListener('click',()=>{
-//         console.log("check 확인");
-//     })
-// }
-// test();
