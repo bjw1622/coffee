@@ -1,10 +1,10 @@
 // step 1 요구사항 구현을 위한 전략
 
 // TODO 메뉴 추가
-// - [] 메뉴의 이름을 입력 받고 엔터키 입력으로 추가한다.
-// - [] 추가되는 메뉴의 마크업은 `<ul id="espresso-menu-list" class="mt-3 pl-0"></ul>`안에 삽입
-// - [] 총 메뉴 갯수를 count하여 상단에 보여준다.
-// - [] 메뉴가 추가되고 나면, input 값은 빈 값으로 초기화한다.
+// - [x] 메뉴의 이름을 입력 받고 엔터키 입력으로 추가한다.
+// - [x] 추가되는 메뉴의 마크업은 `<ul id="espresso-menu-list" class="mt-3 pl-0"></ul>`안에 삽입
+// - [x] 총 메뉴 갯수를 count하여 상단에 보여준다.
+// - [x] 메뉴가 추가되고 나면, input 값은 빈 값으로 초기화한다.
 // - [] 사용자 입력값이 빈 값이라면 추가되지 않는다.
 
 // TODO 메뉴 수정
@@ -31,13 +31,14 @@
 // }
 const $ = selector => document.querySelector(selector);
 function App(){
-    // form태그가 자동으로 전송되는걸 막아준다.
+    // form 태그가 자동으로 전송되는걸 막아준다.
     $('#espresso-menu-form').addEventListener("submit",(event) => {
         event.preventDefault();
     })
     // 메뉴의 이름을 입력받는 건
     $('#espresso-menu-form').addEventListener('keypress',(event) =>{
-        if(event.key === "Enter"){
+        // 엔터키 입력 시 그리고 form에 값이 존재 할 때
+        if(event.key === "Enter" && $('#espresso-menu-name').value !== ""){
             const espressoMenuName = $("#espresso-menu-name").value;
             const menuItemTemplate = (espressoMenuName) => {
                 return `
@@ -63,6 +64,8 @@ function App(){
            
             // 전역 변수로 사용하지 않고 querySelector  사용하기
             const menuCount = $('#espresso-menu-list').querySelectorAll('li').length;
+            
+            // 템플릿 literal을 사용
             $('.menu-count').innerHTML = `총 ${menuCount}개`;
             
             // input 입력 후 빈 문자열로 초기화
