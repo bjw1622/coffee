@@ -5,7 +5,7 @@
 // - [x] 추가되는 메뉴의 마크업은 `<ul id="espresso-menu-list" class="mt-3 pl-0"></ul>`안에 삽입
 // - [x] 총 메뉴 갯수를 count하여 상단에 보여준다.
 // - [x] 메뉴가 추가되고 나면, input 값은 빈 값으로 초기화한다.
-// - [] 사용자 입력값이 빈 값이라면 추가되지 않는다.
+// - [x] 사용자 입력값이 빈 값이라면 추가되지 않는다.
 
 // TODO 메뉴 수정
 // - [] 메뉴의 수정은 button click event를 받고, 메뉴 수정하는 모달창이 뜬다.
@@ -20,7 +20,7 @@
 // 요구사항 분석의 중요성을 알고 앞으로 프로그램을 만들기 전 항상 
 // 요구사항 분석 철저하게 하기!
 // 요구사항 분석이 왜 중요한가??
-
+                  
 // 목적을 명확하게 체크하지 않으면 길을 해맨다. 상세하게 기재하면 모르는 부분 막히는 부분을 알고 쉽게 해쳐나갈 수 있다.
 // 모르는 부분은 기능 구현을 하면서 학습하면서 해결할 수 있다.
 // 필요한 지식을 빠르게 파악하고 얻을 수 있다.
@@ -38,7 +38,11 @@ function App(){
     // 메뉴의 이름을 입력받는 건
     $('#espresso-menu-form').addEventListener('keypress',(event) =>{
         // 엔터키 입력 시 그리고 form에 값이 존재 할 때
-        if(event.key === "Enter" && $('#espresso-menu-name').value !== ""){
+        if($('#espresso-menu-name').value === ""){
+            alert('값을 입력해주세요.');
+            return;
+        }
+        if(event.key === "Enter"){
             const espressoMenuName = $("#espresso-menu-name").value;
             const menuItemTemplate = (espressoMenuName) => {
                 return `
