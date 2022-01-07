@@ -23,6 +23,47 @@
 // function(selector){     return document.querySelector(selector); }
 
 const $ = selector => document.querySelector(selector);
+
+const addMenu = () => {
+    const espressoMenuName = $("#espresso-menu-name").value;
+    const menuItemTemplate = (espressoMenuName) => {
+        return `
+                    <li class="menu-list-item d-flex items-center py-2">
+                        <span class="w-100 pl-2 menu-name">${espressoMenuName}</span>
+                        <button
+                            type="button"
+                            class="bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button"
+                        >
+                        수정
+                        </button>
+                        <button
+                        type="button"
+                        class="bg-gray-50 text-gray-500 text-sm menu-remove-button"
+                    >
+                        삭제
+                        </button>
+                    </li>`;
+    };
+
+    // html을 넣을 때는 innerHTML활용(enter를 누를때마다 새롭게 덮어씌움) insertAdjacentHTML(원하는 위치 속성에
+    // 맞게 추가 가능)
+    $('#espresso-menu-list').insertAdjacentHTML(
+        'beforeend',
+        menuItemTemplate(espressoMenuName)
+    );
+
+    // 전역 변수로 사용하지 않고 querySelector  사용하기
+    const menuCount = $('#espresso-menu-list')
+        .querySelectorAll('li')
+        .length;
+
+    // 템플릿 literal을 사용
+    $('.menu-count').innerHTML = `총 ${menuCount}개`;
+
+    // input 입력 후 빈 문자열로 초기화
+    $('#espresso-menu-name').value = "";
+}
+
 function App() {
     // form 태그가 자동으로 전송되는걸 막아준다.
     $('#espresso-menu-form').addEventListener("submit", (event) => {
@@ -39,69 +80,19 @@ function App() {
             alert('값을 입력해주세요.');
             return;
         }
-
-        const espressoMenuName = $("#espresso-menu-name").value;
-        const menuItemTemplate = (espressoMenuName) => {
-            return `
-                    <li class="menu-list-item d-flex items-center py-2">
-                        <span class="w-100 pl-2 menu-name">${espressoMenuName}</span>
-                        <button
-                            type="button"
-                            class="bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button"
-                        >
-                        수정
-                        </button>
-                        <button
-                        type="button"
-                        class="bg-gray-50 text-gray-500 text-sm menu-remove-button"
-                    >
-                        삭제
-                        </button>
-                    </li>`;
-        };
-
-        // html을 넣을 때는 innerHTML활용(enter를 누를때마다 새롭게 덮어씌움) insertAdjacentHTML(원하는 위치 속성에
-        // 맞게 추가 가능)
-        $('#espresso-menu-list').insertAdjacentHTML(
-            'beforeend',
-            menuItemTemplate(espressoMenuName)
-        );
-
-        // 전역 변수로 사용하지 않고 querySelector  사용하기
-        const menuCount = $('#espresso-menu-list')
-            .querySelectorAll('li')
-            .length;
-
-        // 템플릿 literal을 사용
-        $('.menu-count').innerHTML = `총 ${menuCount}개`;
-
-        // input 입력 후 빈 문자열로 초기화
-        $('#espresso-menu-name').value = "";
-
+        
+        addMenu();
     })
 }
 
 function buttonSubmit() {
     $('#espresso-menu-submit-button').addEventListener('click', (event) => {
         const espressoMenuName = $('#espresso-menu-name').value;
-        if( espressoMenuName === ""){
+        if (espressoMenuName === "") {
             alert("메뉴를 입력해주세요");
             return;
         }
-        document.getElementById('espresso-menu-list').innerHTML +=
-            `<li class="menu-list-item d-flex items-center py-2">
-                <span class="w-100 pl-2 menu-name">${espressoMenuName}
-                </span>
-                <button type="button" class="bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button">
-                수정
-                </button>
-                <button type="button" class="bg-gray-50 text-gray-500 text-sm menu-remove-button">
-                삭제
-                </button>
-            </li>`;
-        const menuCount = $('#espresso-menu-list').querySelectorAll('li').length;
-        $('.menu-count').innerHTML = `총 ${menuCount}개`;
-        $('#espresso-menu-name').value = "";
+        addMenu();
     })
 }
 
