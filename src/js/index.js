@@ -61,12 +61,20 @@ const addMenu = () => {
 
   // input 입력 후 빈 문자열로 초기화
   $("#espresso-menu-name").value = "";
-  
-  // edit
-  edit();
 };
 
 function App() {
+  // TODO 메뉴 수정
+  // - [] 메뉴의 수정은 button click event를 받고, 메뉴 수정하는 모달창이 뜬다.
+  // - [] 모달창에서 신규메뉴명을 입력 받고, 확인 버튼을 누르면 메뉴가 수정된다.
+  $('#espresso-menu-list').addEventListener('click',(event)=>{
+    if(event.target.classList.contains('menu-edit-button')){
+      const edit = prompt('수정 하고자 하는 값을 입력하세요.');
+      $('.menu-name').innerHTML = edit;
+    }
+  })
+
+
   // form 태그가 자동으로 전송되는걸 막아준다.
   $("#espresso-menu-form").addEventListener("submit", (event) => {
     event.preventDefault();
@@ -98,15 +106,6 @@ function buttonSubmit() {
   });
 }
 
-function edit(){
-  // edit 부분
-  $('.menu-edit-button').addEventListener('click',(event)=>{
-    const edit = prompt('수정 값을 입력해주세요.');
-    console.log(edit)
-    $('.menu-name').innerHTML = edit;
-    return;
-  })
-}
 App();
 buttonSubmit();
 
