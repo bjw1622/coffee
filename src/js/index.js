@@ -61,6 +61,9 @@ const addMenu = () => {
 
   // input 입력 후 빈 문자열로 초기화
   $("#espresso-menu-name").value = "";
+  
+  // edit
+  edit();
 };
 
 function App() {
@@ -96,13 +99,14 @@ function buttonSubmit() {
 }
 
 function edit(){
+  // edit 부분
   $('.menu-edit-button').addEventListener('click',(event)=>{
-    console.log('test');
-    alert('수정하세여');
+    const edit = prompt('수정 값을 입력해주세요.');
+    console.log(edit)
+    $('.menu-name').innerHTML = edit;
     return;
   })
 }
-
 App();
 buttonSubmit();
-edit();
+
