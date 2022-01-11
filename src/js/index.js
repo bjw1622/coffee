@@ -95,5 +95,14 @@ function buttonSubmit() {
   });
 }
 
+function edit(){
+  $('.menu-edit-button').addEventListener('click',(event)=>{
+    console.log('test');
+    alert('수정하세여');
+    return;
+  })
+}
+
 App();
 buttonSubmit();
+edit();
