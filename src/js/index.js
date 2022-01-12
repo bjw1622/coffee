@@ -19,10 +19,8 @@
 // - [x] 삭제 처리 후 총 메뉴 갯수를 count하여 상단에 보여준다. 요구사항 분석의 중요성을 알고 앞으로 프로그램을 만들기 전 항상
 // 요구사항 분석의 중요성을 알고 앞으로 프로그램을 만들기 전 항상 요구사항 분석 철저하게 하기! 요구사항 분석이 왜 중요한가?? 목적을
 // 명확하게 체크하지 않으면 길을 해맨다. 상세하게 기재하면 모르는 부분 막히는 부분을 알고 쉽게 해쳐나갈 수 있다. 모르는 부분은 기능
-// 구현을 하면서 학습하면서 해결할 수 있다. 필요한 지식을 빠르게 파악하고 얻을 수 있다.
-
-// Refactoring이란??
-// 코드에서 중복을 줄이고 가독성을 높여 줌
+// 구현을 하면서 학습하면서 해결할 수 있다. 필요한 지식을 빠르게 파악하고 얻을 수 있다. Refactoring이란?? 코드에서 중복을
+// 줄이고 가독성을 높여 줌
 
 const $ = (selector) => document.querySelector(selector);
 const updateMenuCount = () => {
@@ -65,7 +63,7 @@ const addMenu = () => {
 
 function App() {
     // 메뉴 수정
-    $('#espresso-menu-list').addEventListener('click', (event) => {
+    const editMenu = (event) => {
         if (event.target.classList.contains('menu-edit-button')) {
             const $menuName = event
                 .target
@@ -74,15 +72,26 @@ function App() {
             const updatedMenuName = prompt('메뉴명을 수정하세요', $menuName.innerText);
             $menuName.innerText = updatedMenuName;
         }
-        else if(event.target.classList.contains("menu-remove-button")){
+    }
+
+    const deleteMenu = (event) => {
+        if (event.target.classList.contains("menu-remove-button")) {
             const find = confirm("정말 삭제하시겠습니까?");
-            if(find === true){
-                event.target.closest('li').remove();
-                const menuDeleteCount =  $('#espresso-menu-list').querySelectorAll('li').length;
-                console.log(menuDeleteCount);
+            if (find === true) {
+                event
+                    .target
+                    .closest('li')
+                    .remove();
+                const menuDeleteCount = $('#espresso-menu-list')
+                    .querySelectorAll('li')
+                    .length;
                 $('.menu-count').innerHTML = `총 ${menuDeleteCount}개`;
             }
         }
+    }
+    $('#espresso-menu-list').addEventListener('click', (event) => {
+        editMenu(event);
+        deleteMenu(event);
     })
 
     // form 태그가 자동으로 전송되는걸 막아준다.
