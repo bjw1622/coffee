@@ -21,12 +21,14 @@
 // 명확하게 체크하지 않으면 길을 해맨다. 상세하게 기재하면 모르는 부분 막히는 부분을 알고 쉽게 해쳐나갈 수 있다. 모르는 부분은 기능
 // 구현을 하면서 학습하면서 해결할 수 있다. 필요한 지식을 빠르게 파악하고 얻을 수 있다.
 
+// Refactoring이란??
+// 코드에서 중복을 줄이고 가독성을 높여 줌
+
 const $ = (selector) => document.querySelector(selector);
 const updateMenuCount = () => {
     const liCount = $('#espresso-menu-list')
         .querySelectorAll("li")
         .length;
-    console.log(liCount);
     $('.menu-count').innerHTML = `총 ${liCount}개`;
 }
 const addMenu = () => {
@@ -56,9 +58,7 @@ const addMenu = () => {
         "beforeend",
         menuItemTemplate(espressoMenuName)
     );
-
     updateMenuCount();
-
     // input 입력 후 빈 문자열로 초기화
     $("#espresso-menu-name").value = "";
 };
@@ -74,16 +74,14 @@ function App() {
             const updatedMenuName = prompt('메뉴명을 수정하세요', $menuName.innerText);
             $menuName.innerText = updatedMenuName;
         }
-        //  메뉴 삭제
-        const index = confirm("메뉴를 정말로 삭제 하시겠습니끼?");
-        if (index === true) {
-            event
-                .target
-                .closest('li')
-                .remove();
-            updateMenuCount();
-        } else {
-            console.log('아니요');
+        else if(event.target.classList.contains("menu-remove-button")){
+            const find = confirm("정말 삭제하시겠습니까?");
+            if(find === true){
+                event.target.closest('li').remove();
+                const menuDeleteCount =  $('#espresso-menu-list').querySelectorAll('li').length;
+                console.log(menuDeleteCount);
+                $('.menu-count').innerHTML = `총 ${menuDeleteCount}개`;
+            }
         }
     })
 
@@ -97,14 +95,11 @@ function App() {
         if (event.key !== "Enter") {
             return;
         }
-
         if ($("#espresso-menu-name").value === "") {
             alert("값을 입력해주세요.");
             return;
         }
-
         addMenu();
-
     });
 }
 
