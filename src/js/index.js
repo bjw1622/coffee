@@ -3,7 +3,8 @@
 // TODO 메뉴 추가
 // - [x] 메뉴의 이름을 입력 받고 엔터키 입력으로 추가한다.
 // - [x] 메뉴의 이름을 입력 받고 버튼 입력으로 추가한다.
-// - [x] 추가되는 메뉴의 마크업은 `<ul id="espresso-menu-list" class="mt-3 pl-0"></ul>`안에 삽입
+// - [x] 추가되는 메뉴의 마크업은 `<ul id="espresso-menu-list" class="mt-3 pl-0"></ul>`안에
+// 삽입
 // - [x] 총 메뉴 갯수를 count하여 상단에 보여준다.
 // - [x] 메뉴가 추가되고 나면, input 값은 빈 값으로 초기화한다.
 // - [x] 사용자 입력값이 빈 값이라면 추가되지 않는다.
@@ -16,16 +17,17 @@
 // - [x] 메뉴의 삭제는 button click event를 받고, 메뉴 삭제 confirm 모달창이 뜬다.
 // - [x] 확인 버튼을 클릭하면 메뉴가 삭제된다.
 // - [x] 삭제 처리 후 총 메뉴 갯수를 count하여 상단에 보여준다. 요구사항 분석의 중요성을 알고 앞으로 프로그램을 만들기 전 항상
-
 // 요구사항 분석의 중요성을 알고 앞으로 프로그램을 만들기 전 항상 요구사항 분석 철저하게 하기! 요구사항 분석이 왜 중요한가?? 목적을
 // 명확하게 체크하지 않으면 길을 해맨다. 상세하게 기재하면 모르는 부분 막히는 부분을 알고 쉽게 해쳐나갈 수 있다. 모르는 부분은 기능
 // 구현을 하면서 학습하면서 해결할 수 있다. 필요한 지식을 빠르게 파악하고 얻을 수 있다.
 
 const $ = (selector) => document.querySelector(selector);
 const updateMenuCount = () => {
-    const liCount = $('#espresso-menu-list').querySelectorAll("li").length;
+    const liCount = $('#espresso-menu-list')
+        .querySelectorAll("li")
+        .length;
     console.log(liCount);
-    $('.menu-count').innerHTML =  `총 ${liCount}개`;
+    $('.menu-count').innerHTML = `총 ${liCount}개`;
 }
 const addMenu = () => {
     const espressoMenuName = $("#espresso-menu-name").value;
@@ -57,7 +59,6 @@ const addMenu = () => {
 
     updateMenuCount();
 
-
     // input 입력 후 빈 문자열로 초기화
     $("#espresso-menu-name").value = "";
 };
@@ -73,7 +74,7 @@ function App() {
             const updatedMenuName = prompt('메뉴명을 수정하세요', $menuName.innerText);
             $menuName.innerText = updatedMenuName;
         }
-    //  메뉴 삭제
+        //  메뉴 삭제
         const index = confirm("메뉴를 정말로 삭제 하시겠습니끼?");
         if (index === true) {
             event
@@ -81,8 +82,7 @@ function App() {
                 .closest('li')
                 .remove();
             updateMenuCount();
-        }
-        else{
+        } else {
             console.log('아니요');
         }
     })
