@@ -22,7 +22,11 @@
 // 구현을 하면서 학습하면서 해결할 수 있다. 필요한 지식을 빠르게 파악하고 얻을 수 있다.
 
 const $ = (selector) => document.querySelector(selector);
-
+const updateMenuCount = () => {
+    const liCount = $('#espresso-menu-list').querySelectorAll("li").length;
+    console.log(liCount);
+    $('.menu-count').innerHTML =  `총 ${liCount}개`;
+}
 const addMenu = () => {
     const espressoMenuName = $("#espresso-menu-name").value;
     const menuItemTemplate = (espressoMenuName) => {
@@ -51,13 +55,8 @@ const addMenu = () => {
         menuItemTemplate(espressoMenuName)
     );
 
-    // 전역 변수로 사용하지 않고 querySelector  사용하기
-    const menuCount = $("#espresso-menu-list")
-        .querySelectorAll("li")
-        .length;
+    updateMenuCount();
 
-    // 템플릿 literal을 사용
-    $(".menu-count").innerHTML = `총 ${menuCount}개`;
 
     // input 입력 후 빈 문자열로 초기화
     $("#espresso-menu-name").value = "";
@@ -81,13 +80,7 @@ function App() {
                 .target
                 .closest('li')
                 .remove();
-            const menuCount = document
-                .querySelector('.menu-count')
-                .querySelectorAll('li')
-                .length
-                console
-                .log(menuCount);
-            $('.menu-count').innerText = `총 ${menuCount}개`
+            updateMenuCount();
         }
         else{
             console.log('아니요');
