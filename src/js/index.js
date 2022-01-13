@@ -47,7 +47,6 @@ function inputMenuEnter() {
                                             </button>
                                         </li>`;
                                     };
-            $('#espresso-menu-list').insertAdjacentElement('beforeend',addForm(menu));
             $("#espresso-menu-list").insertAdjacentHTML("beforeend",addForm(menu));
     }})
 }
