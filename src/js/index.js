@@ -24,28 +24,32 @@
 const $ = (selector) => document.querySelector(selector);
 // 메뉴의 이름을 입력 받는 function
 function inputMenuEnter() {
-    $('#espresso-menu-name').addEventListener('keydown', (event) => {
+    $('#espresso-menu-name').addEventListener('keypress', (event) => {
         // 엔터키로 추가한다.
         if (event.code === "Enter") {
             event.preventDefault();
-            const $menu = event.target.value;
-            $('#espresso-menu-list').innerHTML = `
-            <li class="menu-list-item d-flex items-center py-2">
-            <span class="w-100 pl-2 menu-name">${$menu}</span>
-            <button
-                type="button"
-                class="bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button"
-            >
-            수정
-            </button>
-            <button
-            type="button"
-            class="bg-gray-50 text-gray-500 text-sm menu-remove-button"
-        >
-            삭제
-            </button>
-        </li>`
-        }
-    })
+            const menu = event.target.value;
+            const addForm = (menu) => {
+                return `
+                                            <li class="menu-list-item d-flex items-center py-2">
+                                            <span class="w-100 pl-2 menu-name">${menu}</span>
+                                            <button
+                                                type="button"
+                                                class="bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button"
+                                            >
+                                            수정
+                                            </button>
+                                            <button
+                                            type="button"
+                                            class="bg-gray-50 text-gray-500 text-sm menu-remove-button"
+                                        >
+                                            삭제
+                                            </button>
+                                        </li>`;
+                                    };
+            $('#espresso-menu-list').insertAdjacentElement('beforeend',addForm(menu));
+            $("#espresso-menu-list").insertAdjacentHTML("beforeend",addForm(menu));
+    }})
 }
+
 inputMenuEnter();
