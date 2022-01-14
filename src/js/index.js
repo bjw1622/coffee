@@ -24,13 +24,13 @@
 const $ = (selector) => document.querySelector(selector);
 // 메뉴의 이름을 입력 받는 function
 function inputMenuEnter() {
-    $('#espresso-menu-name').addEventListener('keypress', (event) => {
-        // 엔터키로 추가한다.
-        if (event.code === "Enter") {
-            event.preventDefault();
-            const menu = event.target.value;
-            const addForm = (menu) => {
-                return `
+  $("#espresso-menu-name").addEventListener("keypress", (event) => {
+    // 엔터키로 추가한다.
+    if (event.code === "Enter") {
+      event.preventDefault();
+      const menu = event.target.value;
+      const addForm = (menu) => {
+        return `
                                             <li class="menu-list-item d-flex items-center py-2">
                                             <span class="w-100 pl-2 menu-name">${menu}</span>
                                             <button
@@ -46,9 +46,10 @@ function inputMenuEnter() {
                                             삭제
                                             </button>
                                         </li>`;
-                                    };
-            $("#espresso-menu-list").insertAdjacentHTML("beforeend",addForm(menu));
-    }})
+      };
+      $("#espresso-menu-list").insertAdjacentHTML("beforeend", addForm(menu));
+    }
+  });
 }
 
 inputMenuEnter();
