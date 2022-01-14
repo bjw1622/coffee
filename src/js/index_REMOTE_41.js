@@ -25,15 +25,6 @@ const $ = selector => document.querySelector(selector);
 
 // 메뉴의 이름을 엔터키로 입력 받는 function
 function inputMenuEnter() {
-<<<<<<< HEAD
-  $("#espresso-menu-name").addEventListener("keypress", (event) => {
-    // 엔터키로 추가한다.
-    if (event.code === "Enter") {
-      event.preventDefault();
-      const menu = event.target.value;
-      const addForm = (menu) => {
-        return `
-=======
   $('#espresso-menu-name').addEventListener('keypress', event => {
     // 엔터키로 추가한다.
     if (event.code === 'Enter') {
@@ -59,7 +50,6 @@ function addMenu() {
   const menu = $('#espresso-menu-name').value;
   const addForm = menu => {
     return `
->>>>>>> d58baa15226fee36fd620903be272af3691a521a
                                             <li class="menu-list-item d-flex items-center py-2">
                                             <span class="w-100 pl-2 menu-name">${menu}</span>
                                             <button
@@ -75,15 +65,6 @@ function addMenu() {
                                             삭제
                                             </button>
                                         </li>`;
-<<<<<<< HEAD
-      };
-      $("#espresso-menu-list").insertAdjacentHTML("beforeend", addForm(menu));
-    }
-  });
-}
-
-inputMenuEnter();
-=======
   };
   $('#espresso-menu-list').insertAdjacentHTML('beforeend', addForm(menu));
   //   초기화
@@ -98,4 +79,3 @@ function count() {
 
 inputMenuEnter();
 inputMenuButton();
->>>>>>> d58baa15226fee36fd620903be272af3691a521a
