@@ -21,24 +21,15 @@
 // 구현을 하면서 학습하면서 해결할 수 있다. 필요한 지식을 빠르게 파악하고 얻을 수 있다. Refactoring이란?? 코드에서 중복을
 // 줄이고 가독성을 높여 줌
 
-const $ = selector => document.querySelector(selector);
+const $ = (selector) => document.querySelector(selector);
 
 // 메뉴의 이름을 엔터키로 입력 받는 function
 function inputMenuEnter() {
-<<<<<<< HEAD
   $("#espresso-menu-name").addEventListener("keypress", (event) => {
     // 엔터키로 추가한다.
     if (event.code === "Enter") {
       event.preventDefault();
-      const menu = event.target.value;
-      const addForm = (menu) => {
-        return `
-=======
-  $('#espresso-menu-name').addEventListener('keypress', event => {
-    // 엔터키로 추가한다.
-    if (event.code === 'Enter') {
-      event.preventDefault();
-      if (event.target.value != '') {
+      if (event.target.value != "") {
         addMenu();
         count();
       }
@@ -47,8 +38,8 @@ function inputMenuEnter() {
 }
 // 메뉴의 이름을 버튼으로 입력 받는 function
 function inputMenuButton() {
-  $('#espresso-menu-submit-button').addEventListener('click', event => {
-    if ($('#espresso-menu-name').value != '') {
+  $("#espresso-menu-submit-button").addEventListener("click", (event) => {
+    if ($("#espresso-menu-name").value != "") {
       addMenu();
       count();
     }
@@ -56,10 +47,9 @@ function inputMenuButton() {
 }
 
 function addMenu() {
-  const menu = $('#espresso-menu-name').value;
-  const addForm = menu => {
+  const menu = $("#espresso-menu-name").value;
+  const addForm = (menu) => {
     return `
->>>>>>> d58baa15226fee36fd620903be272af3691a521a
                                             <li class="menu-list-item d-flex items-center py-2">
                                             <span class="w-100 pl-2 menu-name">${menu}</span>
                                             <button
@@ -75,27 +65,17 @@ function addMenu() {
                                             삭제
                                             </button>
                                         </li>`;
-<<<<<<< HEAD
-      };
-      $("#espresso-menu-list").insertAdjacentHTML("beforeend", addForm(menu));
-    }
-  });
-}
-
-inputMenuEnter();
-=======
   };
-  $('#espresso-menu-list').insertAdjacentHTML('beforeend', addForm(menu));
+  $("#espresso-menu-list").insertAdjacentHTML("beforeend", addForm(menu));
   //   초기화
-  $('#espresso-menu-name').value = '';
+  $("#espresso-menu-name").value = "";
 }
 
 function count() {
-  $('.menu-count').textContent = `총 ${
-    $('#espresso-menu-list').querySelectorAll('li').length
+  $(".menu-count").textContent = `총 ${
+    $("#espresso-menu-list").querySelectorAll("li").length
   }개`;
 }
 
 inputMenuEnter();
 inputMenuButton();
->>>>>>> d58baa15226fee36fd620903be272af3691a521a
