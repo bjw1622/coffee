@@ -45,7 +45,7 @@ function inputMenuButton() {
       addMenu();
       count();
     }
-    menuModify();
+    menuButtonClick();
   });
 }
 
@@ -119,6 +119,19 @@ function menuDelete() {
     if (deleteBoolean === true) {
       event.target.parentNode.remove();
       count();
+    }
+  });
+}
+
+function menuButtonClick() {
+  $(".menu-list-item").addEventListener("click", (event) => {
+    if (event.target.classList.contains("menu-edit-button")) {
+      const modifyMenu = event.target.closest("li").querySelector(".menu-name");
+      const modify = prompt(
+        "수정 할 메뉴 이름을 입력하세요.",
+        modifyMenu.innerText
+      );
+      modifyMenu.innerText = modify;
     }
   });
 }
