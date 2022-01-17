@@ -45,6 +45,7 @@ function inputMenuButton() {
       addMenu();
       count();
     }
+    menuModify();
   });
 }
 
