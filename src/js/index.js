@@ -48,7 +48,7 @@ function inputMenuButton() {
   });
 }
 
-// 메뉴 추가 html function
+// 메뉴 추가 html function 및 수정
 function addMenu() {
   const menu = $("#espresso-menu-name").value;
   const addForm = (menu) => {
@@ -72,6 +72,7 @@ function addMenu() {
   $("#espresso-menu-list").insertAdjacentHTML("beforeend", addForm(menu));
   //   초기화
   $("#espresso-menu-name").value = "";
+  menuModify();
 }
 
 // 메뉴 count function
@@ -86,6 +87,17 @@ function menuInputAlert() {
   if ($("#espresso-menu-name").value === "") {
     alert("메뉴 이름을 입력해주세요.");
   }
+}
+
+// 메뉴 수정 function
+function menuModify() {
+  $(".menu-edit-button").addEventListener("click", (event) => {
+    const modify = prompt(
+      "수정 할 메뉴 이름을 입력하세요.",
+      $(".menu-name").textContent
+    );
+    $(".menu-name").textContent = modify;
+  });
 }
 
 inputMenuEnter();
