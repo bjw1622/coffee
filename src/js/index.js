@@ -48,7 +48,7 @@ function inputMenuButton() {
   });
 }
 
-// 메뉴 추가 html function 및 수정
+// 메뉴 추가 html function 및 수정 삭제 실행
 function addMenu() {
   const menu = $("#espresso-menu-name").value;
   const addForm = (menu) => {
@@ -72,7 +72,6 @@ function addMenu() {
   $("#espresso-menu-list").insertAdjacentHTML("beforeend", addForm(menu));
   //   초기화
   $("#espresso-menu-name").value = "";
-  menuModify();
 }
 
 // 메뉴 count function
@@ -92,11 +91,12 @@ function menuInputAlert() {
 // 메뉴 수정 function
 function menuModify() {
   $(".menu-edit-button").addEventListener("click", (event) => {
+    const modifyMenu = event.target.parentNode.querySelector("span");
     const modify = prompt(
       "수정 할 메뉴 이름을 입력하세요.",
-      $(".menu-name").textContent
+      modifyMenu.textContent
     );
-    $(".menu-name").textContent = modify;
+    modifyMenu.textContent = modify;
   });
 }
 
@@ -110,11 +110,15 @@ function menuDelete() {
   // 명확하게 체크하지 않으면 길을 해맨다. 상세하게 기재하면 모르는 부분 막히는 부분을 알고 쉽게 해쳐나갈 수 있다. 모르는 부분은 기능
   // 구현을 하면서 학습하면서 해결할 수 있다. 필요한 지식을 빠르게 파악하고 얻을 수 있다. Refactoring이란?? 코드에서 중복을
   // 줄이고 가독성을 높여 줌
-  $(".menu-remove-button").addEventListener("click", () => {
+  $(".menu-remove-button").addEventListener("click", (event) => {
     const deleteBoolean = confirm(
       "메뉴를 삭제 하시겠습니까?",
       $(".menu-name").textContent
     );
+    if (deleteBoolean === true) {
+      event.target.parentNode.remove();
+      count();
+    }
   });
 }
 inputMenuEnter();
