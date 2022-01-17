@@ -1,9 +1,9 @@
 // step 1 요구사항 구현을 위한 전략
 
 // TODO 메뉴 추가
-// - [] 메뉴의 이름을 입력 받고 엔터키 입력으로 추가한다.
+// - [x] 메뉴의 이름을 입력 받고 엔터키 입력으로 추가한다.
 // - [] 메뉴의 이름을 입력 받고 버튼 입력으로 추가한다.
-// - [] 추가되는 메뉴의 마크업은 `<ul id="espresso-menu-list" class="mt-3 pl-0"></ul>`안에 삽입
+// - [x] 추가되는 메뉴의 마크업은 `<ul id="espresso-menu-list" class="mt-3 pl-0"></ul>`안에 삽입
 // - [] 총 메뉴 갯수를 count하여 상단에 보여준다.
 // - [] 메뉴가 추가되고 나면, input 값은 빈 값으로 초기화한다.
 // - [] 사용자 입력값이 빈 값이라면 추가되지 않는다.
@@ -22,15 +22,35 @@
 // 줄이고 가독성을 높여 줌
 
 const $ = (selector) => document.querySelector(selector);
-// 메뉴의 이름을 입력 받는 function
+
+// 메뉴의 이름을 엔터키로 입력 받는 function
 function inputMenuEnter() {
   $("#espresso-menu-name").addEventListener("keypress", (event) => {
     // 엔터키로 추가한다.
     if (event.code === "Enter") {
       event.preventDefault();
-      const menu = event.target.value;
-      const addForm = (menu) => {
-        return `
+      if (event.target.value != "") {
+        addMenu();
+        console.log("test");
+        count();
+      }
+    }
+  });
+}
+// 메뉴의 이름을 버튼으로 입력 받는 function
+function inputMenuButton() {
+  $("#espresso-menu-submit-button").addEventListener("click", (event) => {
+    if ($("#espresso-menu-name").value != "") {
+      addMenu();
+      count();
+    }
+  });
+}
+
+function addMenu() {
+  const menu = $("#espresso-menu-name").value;
+  const addForm = (menu) => {
+    return `
                                             <li class="menu-list-item d-flex items-center py-2">
                                             <span class="w-100 pl-2 menu-name">${menu}</span>
                                             <button
@@ -46,10 +66,17 @@ function inputMenuEnter() {
                                             삭제
                                             </button>
                                         </li>`;
-      };
-      $("#espresso-menu-list").insertAdjacentHTML("beforeend", addForm(menu));
-    }
-  });
+  };
+  $("#espresso-menu-list").insertAdjacentHTML("beforeend", addForm(menu));
+  //   초기화
+  $("#espresso-menu-name").value = "";
+}
+
+function count() {
+  $(".menu-count").textContent = `총 ${
+    $("#espresso-menu-list").querySelectorAll("li").length
+  }개`;
 }
 
 inputMenuEnter();
+inputMenuButton();
